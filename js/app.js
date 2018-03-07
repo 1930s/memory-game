@@ -10,8 +10,23 @@ for (let i = 1; i <= 16; i++) {
   const list = document.createElement('li');
   const image = document.createElement('img');
   const randomNum = Math.floor(Math.random() * icons.length);
-  image.src= icons[randomNum];
+  image.src = icons[randomNum];
+  image.className = "img";
   card.appendChild(list);
   list.appendChild(image);
   icons.splice(randomNum, 1);
 }
+
+const lists = document.querySelectorAll('li');
+    for (let i = 0; i < lists.length; i++) {
+      lists[i].addEventListener("click", function(e) {
+        this.firstChild.classList.toggle('img');
+      });
+    }
+
+
+// document.querySelectorAll('li').addEventListener("click", function (e) {
+//
+//   // document.querySelector('.img').style.visibility = "visible";
+//   document.querySelector('.img').classList.toggle('img');
+// });
