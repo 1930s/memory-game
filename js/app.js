@@ -11,16 +11,19 @@ for (let i = 1; i <= 16; i++) {
   const image = document.createElement('img');
   const randomNum = Math.floor(Math.random() * icons.length);
   image.src = icons[randomNum];
-  image.className = "img";
+  image.className = "hide";
   card.appendChild(list);
   list.appendChild(image);
   icons.splice(randomNum, 1);
 }
 
 const lists = document.querySelectorAll('li');
+
     for (let i = 0; i < lists.length; i++) {
       lists[i].addEventListener("click", function(e) {
-        this.firstChild.classList.toggle('img');
+        const icon = this.firstChild;
+        icon.classList.toggle('hide');
+        icon.classList.toggle('show');
       });
     }
 
