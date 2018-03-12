@@ -13,55 +13,64 @@ for (let i = 1; i <= 2; i++) {
     const randomNum = Math.floor(Math.random() * icons.length);
     image.src = icons[randomNum];
     image.className = "hide";
+    list.className = "list_item"
     card.appendChild(list);
     list.appendChild(image);
     icons.splice(randomNum, 1);
   }
 }
 
-// Do not care this:
-
-const lists = document.querySelectorAll('li');
-
-    for (let i = 0; i < lists.length; i++) {
-      lists[i].addEventListener("click", function(e) {
-        const icon = this.firstChild;
-
-        icon.classList.add('show');
-        // icon.classList.remove('hide');
-        const visible = document.querySelector('.show');
-        const visibleNr = visible.src.charAt(visible.src.length-7);
-        const nr = icon.src.charAt(icon.src.length-7);
-
-        if (nr !== visibleNr) {
-            // icon.classList.add('hide');
-            icon.classList.remove('show');
-            visible.classList.remove('show')
-          }
-
-        // const visible = document.querySelector('.show');
-        // const visibleNr = (visible.src).charAt((visible.src).length-7);
-        // const nr = (icon.src).charAt((icon.src).length-7);
+let images = [];
+let list = document.querySelector('.list_item');
 
 
-        console.log(nr);
-        console.log(visibleNr);
 
-        // for (let i = 0; i < lists.length; i++) {
-        //   let visible = document.querySelector('.show').src;
-        //   // let visibleNr = visible.charAt(visible.length-7);
-        //   console.log(visible); }
-        // //
-        //   if (nr !== visibleNr) {
-        //       icon.classList.add('hide');
-        //       icon.classList.remove('show');
-        //       document.querySelector('img').classList.add('hide');
-        //     document.querySelector('img').classList.remove('show');
-        //
-        //       console.log('here1');
-        //     }
-        // }
-        //
-        //   e.stopPropagation;
-      }, false);
+
+function doGame(e) {
+  if (e.target !== e.currentTarget) {
+    if (e.target.firstChild.classList.contains('hide')) {
+      show(e);
     }
+  }
+}
+
+function show(e) {
+  e.target.firstChild.setAttribute('class', 'show');
+  addList(e);
+}
+
+function addList(e) {
+
+  images.push(e.target.firstChild.src);
+  if (images.length == 2) {
+    check(e);
+    }
+  }
+
+function check(e) {
+  console.log(e.target.firstChild);
+  let first = images[0].toString();
+  let second = images[1].toString();
+  console.log(first);
+  console.log(second);
+  if (first === second) {
+    console.log("images equal");
+    e.target.firstChild.setAttribute('class', 'match');
+    let image = document.querySelectorAll('img');
+    if (image.classList.contains('show')) {
+      image.setAttribute('class', 'match');
+    }
+    images = [];
+    }  else if (first != second) {
+      console.log("images not equal");
+      e.target.firstChild.setAttribute('class', 'hide');
+      var image = document.querySelectorAll('img');
+      for (let i = 1; i <= image.length; i++) {
+      if (image.classList.contains('show')) {
+        image.setAttribute('class', 'hide');
+      }}
+      images = [];
+    }
+}
+
+card.addEventListener('click', doGame, false);

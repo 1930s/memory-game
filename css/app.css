@@ -15,12 +15,17 @@ ul {
 
 li {
   list-style: none;
+  border: 1px solid black;
 }
 
 .hide {
-  visibility: visible;
+  visibility: hidden;
   }
 
 .show {
+  visibility: visible;
+  }
+
+.match {
   visibility: visible;
   }
