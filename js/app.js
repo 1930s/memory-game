@@ -22,14 +22,13 @@ for (let i = 1; i <= 2; i++) {
 
 let images = [];
 let list = document.querySelector('.list_item');
-
-
-
-
+var counter=0;
 function doGame(e) {
   if (e.target !== e.currentTarget) {
     if (e.target.firstChild.classList.contains('hide')) {
       show(e);
+      counter+=1;
+      console.log(counter);
     }
   }
 }
@@ -48,28 +47,23 @@ function addList(e) {
   }
 
 function check(e) {
-  console.log(e.target.firstChild);
   let first = images[0].toString();
   let second = images[1].toString();
-  console.log(first);
-  console.log(second);
+
   if (first === second) {
-    console.log("images equal");
     e.target.firstChild.setAttribute('class', 'match');
-    let image = document.querySelectorAll('img');
-    if (image.classList.contains('show')) {
-      image.setAttribute('class', 'match');
-    }
+    var image = document.querySelector('.show');
+    image.setAttribute('class', 'match');
     images = [];
-    }  else if (first != second) {
+  }  else if (first != second) {
+    setTimeout(function hideall() {
       console.log("images not equal");
       e.target.firstChild.setAttribute('class', 'hide');
-      var image = document.querySelectorAll('img');
-      for (let i = 1; i <= image.length; i++) {
-      if (image.classList.contains('show')) {
-        image.setAttribute('class', 'hide');
-      }}
+      var image = document.querySelector('.show');
+      image.setAttribute('class', 'hide');
+      console.log(image);
       images = [];
+    }, 500);
     }
 }
 
