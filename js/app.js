@@ -19,12 +19,37 @@ for (let i = 1; i <= 2; i++) {
     icons.splice(randomNum, 1);
   }
 }
-
+var displayTime=0;
+var time = 0;
+var offset = 0;
 let images = [];
 let list = document.querySelector('.list_item');
+
+card.addEventListener('click', doGame, false);
+document.addEventListener('click', timer, false);
+
+function timer(evt) {
+  let visibleCard = document.querySelector('.show');
+  let hiddenCard = document.querySelector('.hide');
+
+
+  if (evt.target.nodeName === "LI" && counter === 1 ) {
+   console.log("ul vette az adást" );
+   displayTime = setInterval(actualTime, 10);
+   offset = Date.now();
+
+   } else if (visibleCard == undefined && hiddenCard == undefined) {
+     clearInterval(displayTime);
+   }
+ }
+
+
+
+
 var counter=0;
 function doGame(e) {
   if (e.target !== e.currentTarget) {
+
     if (e.target.firstChild.classList.contains('hide')) {
       show(e);
       counter+=1;
@@ -39,7 +64,6 @@ function show(e) {
 }
 
 function addList(e) {
-
   images.push(e.target.firstChild.src);
   if (images.length == 2) {
     check(e);
@@ -56,15 +80,54 @@ function check(e) {
     image.setAttribute('class', 'match');
     images = [];
   }  else if (first != second) {
-    setTimeout(function hideall() {
-      console.log("images not equal");
+    setTimeout(function hideAll() {
       e.target.firstChild.setAttribute('class', 'hide');
       var image = document.querySelector('.show');
       image.setAttribute('class', 'hide');
-      console.log(image);
       images = [];
     }, 500);
     }
 }
 
-card.addEventListener('click', doGame, false);
+
+   function actualTime(evt) {
+    time+=delta();
+    timeCounter.textContent=timeFormatter(time);
+
+  }
+
+  function delta() {
+   var now = Date.now();
+   var timePassed = now - offset;
+   offset = now;
+   return timePassed;
+ }
+
+// var minutes=0;
+// var seconds=0;
+// var milliseconds=0;
+
+  function timeFormatter(time) {
+    time = new Date(time);
+    var minutes = time.getMinutes().toString();
+    var seconds = time.getSeconds().toString();
+    var milliseconds = time.getMilliseconds().toString();
+
+    if (minutes.length < 2) {
+      minutes = '0' + minutes;
+    }
+
+    if (seconds.length < 2) {
+      seconds = '0' + seconds;
+    }
+
+    while (milliseconds.length < 3) {
+      milliseconds = '0' + milliseconds;
+    }
+
+    return minutes + ' : ' + seconds + ' : ' + milliseconds;
+  }
+
+  const timeCounter = document.createElement('p');
+  const resultsSection =document.querySelector('.results');
+  resultsSection.appendChild(timeCounter);
