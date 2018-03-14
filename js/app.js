@@ -2,11 +2,19 @@ const stars = document.querySelector('.stars');
 const move_counter = document.querySelector('.move_counter');
 const game = document.querySelector('.game');
 const card = document.querySelector('.card');
+const reload = document.querySelector('.reload');
 
 
-const icons = ["icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg", "icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg"];
+var icons = ["icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg", "icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg"];
 
-for (let i = 1; i <= 2; i++) {
+makeGamePage()
+
+function makeGamePage() {
+  const card = document.createElement('ul');
+  card.className = "card";
+  game.appendChild(card);
+
+  for (let i = 1; i <= 2; i++) {
   for (let i = 1; i <= 8; i++) {
     const list = document.createElement('li');
     const image = document.createElement('img');
@@ -19,14 +27,34 @@ for (let i = 1; i <= 2; i++) {
     icons.splice(randomNum, 1);
   }
 }
-var displayTime=0;
+}
+
+var displayTime = 0;
 var time = 0;
 var offset = 0;
 let images = [];
 let list = document.querySelector('.list_item');
 
-card.addEventListener('click', doGame, false);
+game.addEventListener('click', doGame, false);
 document.addEventListener('click', timer, false);
+reload.addEventListener('click', setDefault, false);
+
+function setDefault(event) {
+  const game = document.querySelector('.game');
+  const card = document.querySelector('.card')
+  game.removeChild(card);
+  icons = ["icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg", "icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg"];
+  images = [];
+    clearInterval(displayTime);
+    time=0;
+    counter=0;
+    timeCounter.textContent="00 : 00 : 000"
+  makeGamePage();
+
+  console.log(time, counter);
+
+}
+
 
 function timer(evt) {
   let visibleCard = document.querySelector('.show');
@@ -41,6 +69,7 @@ function timer(evt) {
    } else if (visibleCard == undefined && hiddenCard == undefined) {
      clearInterval(displayTime);
    }
+   evt.stopPropagation();
  }
 
 
@@ -50,6 +79,7 @@ var counter=0;
 
 
 function doGame(e) {
+
   if (e.target !== e.currentTarget) {
 
     if (e.target.firstChild.classList.contains('hide')) {
