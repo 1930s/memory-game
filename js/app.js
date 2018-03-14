@@ -40,19 +40,19 @@ document.addEventListener('click', timer, false);
 reload.addEventListener('click', setDefault, false);
 
 function setDefault(event) {
+  event.preventDefault();
   const game = document.querySelector('.game');
   const card = document.querySelector('.card')
   game.removeChild(card);
   icons = ["icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg", "icons/1_1.svg", "icons/2_1.svg", "icons/3_1.svg", "icons/4_1.svg", "icons/5_1.svg", "icons/6_1.svg", "icons/7_1.svg", "icons/8_1.svg"];
   images = [];
-    clearInterval(displayTime);
-    time=0;
-    counter=0;
-    timeCounter.textContent="00 : 00 : 000"
+  clearInterval(displayTime);
+  time=0;
+  counter=0;
+  timeCounter.textContent ="00 : 00 : 000"
+  move_counter.textContent ="0 MOVES";
   makeGamePage();
-
-  console.log(time, counter);
-
+  document.querySelector('.congrat').style.display="none";
 }
 
 
@@ -68,6 +68,15 @@ function timer(evt) {
 
    } else if (visibleCard == undefined && hiddenCard == undefined) {
      clearInterval(displayTime);
+     const congrat= document.querySelector('.congrat');
+     congrat.style.display="block";
+     const text = document.createElement('p');
+     text.innerHTML="Your results:<br>" + "Time: " + timeFormatter(time) +"<br>Moves: " + (counter / 2).toFixed(0) + "<br>Stars: " + ((counter/2)/7).toFixed(0);
+     document.querySelector('.gratHead').appendChild(text);
+     document.querySelector('button').addEventListener('click', setDefault, false);
+     document.addEventListener('click', function(){
+       congrat.style.display="none";
+     });
    }
    evt.stopPropagation();
  }
@@ -111,13 +120,15 @@ function check(e) {
     var image = document.querySelector('.show');
     image.setAttribute('class', 'match');
     images = [];
+
+
   }  else if (first != second) {
     setTimeout(function hideAll() {
       e.target.firstChild.setAttribute('class', 'hide');
       var image = document.querySelector('.show');
       image.setAttribute('class', 'hide');
       images = [];
-    }, 500);
+      }, 500);
   }
   starMoves();
 }
