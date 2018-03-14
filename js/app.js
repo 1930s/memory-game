@@ -47,6 +47,8 @@ function timer(evt) {
 
 
 var counter=0;
+
+
 function doGame(e) {
   if (e.target !== e.currentTarget) {
 
@@ -86,7 +88,8 @@ function check(e) {
       image.setAttribute('class', 'hide');
       images = [];
     }, 500);
-    }
+  }
+  starMoves();
 }
 
 
@@ -103,9 +106,7 @@ function check(e) {
    return timePassed;
  }
 
-// var minutes=0;
-// var seconds=0;
-// var milliseconds=0;
+
 
   function timeFormatter(time) {
     time = new Date(time);
@@ -131,3 +132,19 @@ function check(e) {
   const timeCounter = document.createElement('p');
   const resultsSection =document.querySelector('.results');
   resultsSection.appendChild(timeCounter);
+
+
+
+function starMoves() {
+  var moveCounterNumber = (counter / 2).toFixed(0);
+  move_counter.textContent= moveCounterNumber + " MOVES";
+
+  if (moveCounterNumber == 7) {
+    console.log("in" );
+    stars.getElementsByTagName('img')[2].style.visibility="hidden";
+  } else if (moveCounterNumber == 14) {
+    stars.getElementsByTagName('img')[1].style.visibility="hidden";
+  } else if (moveCounterNumber == 21) {
+  stars.getElementsByTagName('img')[0].style.visibility="hidden";
+}
+}
