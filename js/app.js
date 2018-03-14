@@ -201,7 +201,7 @@ function setDefault(event) {
   document.querySelector('.congrat').style.display="none";
 }
 
-// The scoreTable() function holds and show the results of the previous games
+// The scoreTable() function holds and showthe results of the previous games
 
 var scoreMoves=[];
 var scoreStars=[];
