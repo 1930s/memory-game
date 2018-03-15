@@ -74,27 +74,42 @@ function check(e) {
   const first = images[0].toString();
   const second = images[1].toString();
   const firstC = e.target.firstChild;
-  var image = document.querySelector('.show');
-    if (first === second) {
+
+  if (first === second) {
+    images = [];
+    let img = document.querySelectorAll('.show');
+    [].forEach.call(img, function(img) {
       firstC.setAttribute('class', 'match');
-      image.setAttribute('class', 'match');
+      img.setAttribute('class', 'match');
+      let image = document.querySelector('.show');
       images = [];
+      img.parentElement.classList.remove("white");
+      e.target.classList.remove("white");
+      img.parentElement.classList.add("green", "bounceIn");
+      e.target.classList.add("green", "bounceIn");
+      setTimeout(function hideAll() {
+       img.parentElement.setAttribute('class',"white");
+       e.target.setAttribute('class',"white");
+      }, 1000);
+      });
       scoreTable();
     }  else if (first != second) {
-        images = [];
-        const parentEl = image.parentElement;
-        parentEl.classList.remove("white");
-        e.target.classList.remove("white");
-        parentEl.classList.add("red", "shake");
-        e.target.classList.add("red", "shake");
+        let img = document.querySelectorAll('.show');
+        [].forEach.call(img, function(img) {
+          let image = document.querySelector('.show');
+          images = [];
+          img.parentElement.classList.remove("white");
+          e.target.classList.remove("white");
+          img.parentElement.classList.add("red", "swing");
+          e.target.classList.add("red", "swing");
           setTimeout(function hideAll() {
-          e.target.firstChild.setAttribute('class', 'hide');
-          image.setAttribute('class', 'hide');
-          parentEl.setAttribute('class',"purple");
-          e.target.setAttribute('class',"purple");
-          parentEl.classList.add("animated");
-          e.target.classList.add('animated');
-        }, 700);
+            img.setAttribute('class', 'hide')
+            img.parentElement.setAttribute('class',"purple");
+            e.target.setAttribute('class',"purple");
+            img.parentElement.classList.add("animated");
+            e.target.classList.add('animated');
+          }, 1000);
+        });
     }
   starMoves();
 }
