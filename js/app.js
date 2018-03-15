@@ -21,7 +21,9 @@ function makeGamePage() {
       const randomNum = Math.floor(Math.random() * icons.length);
       image.src = icons[randomNum];
       image.className = "hide";
-      list.className = "list_item"
+      image.classList.add("animated");
+      list.className = "purple";
+      list.classList.add("animated");
       card.appendChild(list);
       list.appendChild(image);
       icons.splice(randomNum, 1);
@@ -39,7 +41,7 @@ makeGamePage()
 // This listener also counts the clicks, 2 clicks equal 1 move.
 // After every 7 moves 1 star disapear.
 
-game.addEventListener('click', doGame, false);
+game.addEventListener('click', doGame, true);
 
 var counter=0;
 let images = [];
@@ -50,12 +52,14 @@ function doGame(e) {
       show(e);
       counter+=1;
       console.log(counter);
+      console.log(images);
     }
   }
 }
 
 function show(e) {
   e.target.firstChild.setAttribute('class', 'show');
+  e.target.classList.add('white');
   addList(e);
 }
 
@@ -67,22 +71,31 @@ function addList(e) {
 }
 
 function check(e) {
-  let first = images[0].toString();
-  let second = images[1].toString();
+  const first = images[0].toString();
+  const second = images[1].toString();
+  const firstC = e.target.firstChild;
+  var image = document.querySelector('.show');
     if (first === second) {
-      e.target.firstChild.setAttribute('class', 'match');
-      var image = document.querySelector('.show');
+      firstC.setAttribute('class', 'match');
       image.setAttribute('class', 'match');
       images = [];
       scoreTable();
     }  else if (first != second) {
-        setTimeout(function hideAll() {
-        e.target.firstChild.setAttribute('class', 'hide');
-        var image = document.querySelector('.show');
-        image.setAttribute('class', 'hide');
         images = [];
-        }, 500);
-      }
+        const parentEl = image.parentElement;
+        parentEl.classList.remove("white");
+        e.target.classList.remove("white");
+        parentEl.classList.add("red", "shake");
+        e.target.classList.add("red", "shake");
+          setTimeout(function hideAll() {
+          e.target.firstChild.setAttribute('class', 'hide');
+          image.setAttribute('class', 'hide');
+          parentEl.setAttribute('class',"purple");
+          e.target.setAttribute('class',"purple");
+          parentEl.classList.add("animated");
+          e.target.classList.add('animated');
+        }, 700);
+    }
   starMoves();
 }
 
@@ -121,8 +134,9 @@ function timer(evt) {
   const visibleCard = document.querySelector('.show');
   const hiddenCard = document.querySelector('.hide');
     if (evt.target.nodeName === "LI" && counter === 1 ) {
-     displayTime = setInterval(actualTime, 10);
+     displayTime = setInterval(actualTime, 100);
      timezero = Date.now();
+     evt.stopPropagation();
     } else if (visibleCard == undefined && hiddenCard == undefined) {
        clearInterval(displayTime);
        const congrat = document.querySelector('.congrat');
@@ -133,9 +147,10 @@ function timer(evt) {
        document.querySelector('button').addEventListener('click', setDefault, false);
        document.addEventListener('click', function(){
        congrat.style.display="none";
+       evt.stopPropagation();
      });
    }
-   evt.stopPropagation();
+
 }
 
 function actualTime(evt) {

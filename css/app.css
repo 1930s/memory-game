@@ -32,13 +32,17 @@ h2 {
 
 .results {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: auto auto 120px auto;
   max-width: 600px;
   justify-content: stretch;
   align-content: center;
   margin-bottom: 1rem;
   font-weight: 600;
   font-size: 1.2rem;
+}
+
+.time {
+  align-self: center;
 }
 
 .star {
@@ -85,14 +89,35 @@ li {
   display: grid;
   align-items: stretch;
   justify-content: stretch;
+  border-radius: 1rem;
+  padding: 0.6rem;
+
+}
+
+.purple {
   background: #9797FF;
-  /* background: #EAEAEF; */
-  /* border-radius: 1rem;
-    -webkit-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+}
+
+.red {
+  background: #FBD2D3;
+  -webkit-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+ -moz-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+ box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+}
+
+.green {
+  background: #66CBC4;
+  -webkit-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+ -moz-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+ box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
+}
+
+.white {
+  background: #EAEAEF;
+  transition: 0.4s;
+   -webkit-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
   -moz-box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
   box-shadow: 0px 0px 20px 2px rgba(141,48,214,0.20);
-  padding: 0.6rem; */
-
 }
 
 .hide {
