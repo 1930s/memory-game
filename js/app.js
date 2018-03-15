@@ -243,19 +243,19 @@ function scoreTable() {
     scoreStars.push(stars_nr);
     scoreTime.push(timeFormatter(time));
 
-    const gameName = document.createElement('h3');
+    const gameName = document.createElement('h4');
     gameName.textContent = "Game " + nr;
     document.querySelector('.gameHead').appendChild(gameName);
 
-    const moveResults = document.createElement('h3');
+    const moveResults = document.createElement('h4');
     moveResults.textContent = scoreMoves[nr-1];
     document.querySelector('.moveHead').appendChild(moveResults);
 
-    const starResults = document.createElement('h3');
+    const starResults = document.createElement('h4');
     starResults.textContent=scoreStars[nr-1];
     document.querySelector('.starHead').appendChild(starResults);
 
-    const timeResults = document.createElement('h3');
+    const timeResults = document.createElement('h4');
     timeResults.textContent=scoreTime[nr-1];
     document.querySelector('.timeHead').appendChild(timeResults);
 
