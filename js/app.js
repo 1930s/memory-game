@@ -115,6 +115,7 @@ document.addEventListener('click', timer, false);
 var displayTime = 0;
 var time = 0;
 var timezero = 0;
+var timeCounter = document.querySelector('.time');
 
 function timer(evt) {
   const visibleCard = document.querySelector('.show');
@@ -166,12 +167,6 @@ function timeFormatter(time) {
     }
   return minutes + ' : ' + seconds + ' : ' + milliseconds;
 }
-
-// Insert the time into HTML:
-
-const timeCounter = document.createElement('p');
-const resultsSection =document.querySelector('.results');
-resultsSection.appendChild(timeCounter);
 
 // This eventlistener set default the memory game, which menas it will:
 // - remove the parent createElement

@@ -8,12 +8,13 @@
   <title>Memory game</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/app.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Advent+Pro:100,400,600" rel="stylesheet">
 </head>
 
 <body>
   <head>
     <h1>Memory game</h1>
+    <h2>Find the pairs</h2>
   </head>
 
   <main>
@@ -23,8 +24,16 @@
         <img class="star" src="icons/stars.svg" alt="second star">
         <img class="star" src="icons/stars.svg" alt="third star">
       </div>
-      <p class="move_counter">0 MOVES</p>
-      <img class="reload" src="icons/refresh.svg" alt="">
+      <div class="move">
+        <p class="move_counter">0 MOVES</p>
+      </div>
+      <div class="time">
+        <p>00 : 00 : 000</p>
+      </div>
+      <div class="reloader">
+        <img class="reload" src="icons/refresh.svg" alt="">
+        <p>Reload the game</p>
+      </div>
     </section>
 
     <section class="game">
@@ -39,13 +48,13 @@
 
     </section>
 
+    <h3 class="resultTitle">Results</h3>
+
     <section class="results">
-      <div class="table_head">
-        <h2 class="gameHead">GAME</h2>
-        <h2 class="moveHead">MOVES</h2>
-        <h2 class="starHead">STARS</h2>
-        <h2 class="timeHead">TIME</h2>
-      </div>
+        <h3 class="gameHead">GAMES</h3>
+        <h3 class="moveHead">MOVES</h3>
+        <h3 class="starHead">STARS</h3>
+        <h3 class="timeHead">TIME</h3>
     </section>
 
 
