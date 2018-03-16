@@ -135,6 +135,9 @@ function starMoves() {
 // on the list item, and stops when
 // all of the icons classlist contains 'match'.
 // When it stops it's also shows the user their results.
+// I watched this video, and checked this code,
+// and I was inspired by his method:
+//  https://www.youtube.com/watch?v=jRhB1IG7uAw&t=1387s
 
 document.addEventListener('click', timer, false);
 
