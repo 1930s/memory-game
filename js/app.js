@@ -51,8 +51,6 @@ function doGame(e) {
     if (e.target.firstChild.classList.contains('hide')) {
       show(e);
       counter+=1;
-      console.log(counter);
-      console.log(images);
     }
   }
 }
@@ -88,29 +86,29 @@ function check(e) {
       img.parentElement.classList.add("green", "bounceIn");
       e.target.classList.add("green", "bounceIn");
       setTimeout(function hideAll() {
-       img.parentElement.setAttribute('class',"white");
-       e.target.setAttribute('class',"white");
+        img.parentElement.setAttribute('class',"white");
+        e.target.setAttribute('class',"white");
       }, 1000);
-      });
-      scoreTable();
-    }  else if (first != second) {
-        let img = document.querySelectorAll('.show');
-        [].forEach.call(img, function(img) {
-          let image = document.querySelector('.show');
-          images = [];
-          img.parentElement.classList.remove("white");
-          e.target.classList.remove("white");
-          img.parentElement.classList.add("red", "swing");
-          e.target.classList.add("red", "swing");
-          setTimeout(function hideAll() {
-            img.setAttribute('class', 'hide')
-            img.parentElement.setAttribute('class',"purple");
-            e.target.setAttribute('class',"purple");
-            img.parentElement.classList.add("animated");
-            e.target.classList.add('animated');
-          }, 1000);
-        });
-    }
+    });
+    scoreTable();
+  }  else if (first != second) {
+    let img = document.querySelectorAll('.show');
+    [].forEach.call(img, function(img) {
+      let image = document.querySelector('.show');
+      images = [];
+      img.parentElement.classList.remove("white");
+      e.target.classList.remove("white");
+      img.parentElement.classList.add("red", "swing");
+      e.target.classList.add("red", "swing");
+      setTimeout(function hideAll() {
+        img.setAttribute('class', 'hide')
+        img.parentElement.setAttribute('class',"purple");
+        e.target.setAttribute('class',"purple");
+        img.parentElement.classList.add("animated");
+        e.target.classList.add('animated');
+      }, 600);
+    });
+  }
   starMoves();
 }
 
@@ -125,11 +123,11 @@ function starMoves() {
     stars.querySelectorAll('img')[2].style.visibility="hidden";
     stars_nr=3-1;
   } else if (moveCounterNumber == 14) {
-      stars.querySelectorAll('img')[1].style.visibility="hidden";
-      stars_nr=3-2;
+    stars.querySelectorAll('img')[1].style.visibility="hidden";
+    stars_nr=3-2;
   } else if (moveCounterNumber == 21) {
-      stars.querySelectorAll('img')[0].style.visibility="hidden";
-      stars_nr=3-3;
+    stars.querySelectorAll('img')[0].style.visibility="hidden";
+    stars_nr=3-3;
   }
 }
 
@@ -148,36 +146,36 @@ var timeCounter = document.querySelector('.time');
 function timer(evt) {
   const visibleCard = document.querySelector('.show');
   const hiddenCard = document.querySelector('.hide');
-    if (evt.target.nodeName === "LI" && counter === 1 ) {
-     displayTime = setInterval(actualTime, 100);
-     timezero = Date.now();
-     evt.stopPropagation();
-    } else if (visibleCard == undefined && hiddenCard == undefined) {
-       clearInterval(displayTime);
-       const congrat = document.querySelector('.congrat');
-       congrat.style.display ="block";
-       const text = document.createElement('p');
-       text.innerHTML ="Your results:<br>" + "Time: " + timeFormatter(time) +"<br>Moves: " + (counter / 2).toFixed(0) + "<br>Stars: " + stars_nr;
-       document.querySelector('.gratHead').appendChild(text);
-       document.querySelector('button').addEventListener('click', setDefault, false);
-       document.addEventListener('click', function(){
-       congrat.style.display="none";
-       evt.stopPropagation();
-     });
-   }
+  if (evt.target.nodeName === "LI" && counter === 1 ) {
+    displayTime = setInterval(actualTime, 100);
+    timezero = Date.now();
+    evt.stopPropagation();
+  } else if (visibleCard == undefined && hiddenCard == undefined) {
+    clearInterval(displayTime);
+    const congrat = document.querySelector('.congrat');
+    congrat.style.display ="block";
+    const text = document.createElement('p');
+    text.innerHTML ="Your results:<br>" + "Time: " + timeFormatter(time) +"<br>Moves: " + (counter / 2).toFixed(0) + "<br>Stars: " + stars_nr;
+    document.querySelector('.gratHead').appendChild(text);
+    document.querySelector('button').addEventListener('click', setDefault, false);
+    document.addEventListener('click', function(){
+      congrat.style.display="none";
+      evt.stopPropagation();
+    });
+  }
 
 }
 
 function actualTime(evt) {
-    time+=delay();
-    timeCounter.textContent=timeFormatter(time);
+  time+=delay();
+  timeCounter.textContent=timeFormatter(time);
 }
 
 function delay() {
-   var now = Date.now();
-   var timePassed = now - timezero;
-   timezero = now;
-   return timePassed;
+  var now = Date.now();
+  var timePassed = now - timezero;
+  timezero = now;
+  return timePassed;
 }
 
 
@@ -186,15 +184,15 @@ function timeFormatter(time) {
   var minutes = time.getMinutes().toString();
   var seconds = time.getSeconds().toString();
   var milliseconds = time.getMilliseconds().toString();
-    if (minutes.length < 2) {
-        minutes = '0' + minutes;
-    }
-    if (seconds.length < 2) {
-        seconds = '0' + seconds;
-    }
-    while (milliseconds.length < 3) {
-        milliseconds = '0' + milliseconds;
-    }
+  if (minutes.length < 2) {
+    minutes = '0' + minutes;
+  }
+  if (seconds.length < 2) {
+    seconds = '0' + seconds;
+  }
+  while (milliseconds.length < 3) {
+    milliseconds = '0' + milliseconds;
+  }
   return minutes + ' : ' + seconds + ' : ' + milliseconds;
 }
 
