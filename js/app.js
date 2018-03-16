@@ -154,7 +154,7 @@ function timer(evt) {
     clearInterval(displayTime);
     const congrat = document.querySelector('.congrat');
     congrat.style.display ='block';
-    const text = document.createElement('p');
+    const text = document.createElement('h2');
     text.innerHTML ='Your results:<br>' + 'Time: ' + timeFormatter(time) +'<br>Moves: ' + (counter / 2).toFixed(0) + '<br>Stars: ' + stars_nr;
     document.querySelector('.gratHead').appendChild(text);
     document.querySelector('button').addEventListener('click', setDefault, false);
