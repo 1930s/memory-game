@@ -1,3 +1,5 @@
+/* Style main part */
+
 * {
   box-sizing: border-box;
   font-family: 'Advent Pro', sans-serif;
@@ -14,6 +16,8 @@ section {
   width: 100%;
 }
 
+/* Head styling */
+
 h1 {
   font-size: 3.5rem;
   font-weight: 100;
@@ -28,6 +32,8 @@ h2 {
   text-align: center;
   margin-top: 0;
 }
+
+/* Section result styling */
 
 .results {
   display: grid;
@@ -69,6 +75,8 @@ h2 {
   align-self: center;
   justify-self: center;
 }
+
+/* Section game styling */
 
 ul {
   display: grid;
@@ -134,6 +142,7 @@ li {
   visibility: visible;
 }
 
+/* Styling section congratulations */
 
 .congrat {
   display: none;
@@ -159,17 +168,6 @@ li {
   text-align: center;
 }
 
-h3 {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.5rem;
-  margin-bottom: 0;
-}
-
-h4 {
-  text-align: center;
-}
-
 button {
   border-style: none;
   font-size: 1.5rem;
@@ -181,12 +179,27 @@ button {
   border-radius: 1rem;
 }
 
+/* Styling section score table  */
+
+h3 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+h4 {
+  text-align: center;
+}
+
 .results_game {
   display: grid;
   grid-template-columns: repeat(4, auto);
   border-radius: 1.75rem;
   padding: 0 1.2rem;
 }
+
+/* Responsive part */
 
 @media screen and (min-width: 1300px) {
   body {
@@ -197,15 +210,19 @@ button {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
   }
+
   .results {
     grid-column: 2/1 span;
   }
+
   .game {
     grid-column: 2/1 span;
   }
+
   .resultTitle {
     grid-area: 1 / 1 / 1 / 2;
   }
+
   .results_game {
     grid-area: 2 / 1 / 2 / 2;
     display: grid;
@@ -214,7 +231,6 @@ button {
     border-radius: 0 1.75rem 1.75rem 0;
     padding: 0 1.2rem;
   }
-
 }
 
 @media screen and (max-width: 650px) {
@@ -284,5 +300,4 @@ button {
     font-size: 0.9rem;
     margin: 0.4rem 0 0.4rem 0;
   }
-
 }
