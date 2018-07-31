@@ -1,6 +1,6 @@
 # Udacity FEND project: Memory Game
 
-Third project in the Google-Udacity Scholarship 2018.
+The third project in the Google-Udacity Scholarship 2018.
 
 A card matching game (also known as concentration).
 
@@ -16,7 +16,7 @@ When the game starts, a timer will start, and also there is a counter for moves.
 
 - The scores will be saved, so every time the user finishes a game they can see the results.
 
-- If the user choose to restart a game,  the timer, the stars and the move counter will be reset, but the previous results won't disappear.
+- If the user chooses to restart a game,  the timer, the stars and the move counter will be reset, but the previous results won't disappear.
 
 
 ## Built With

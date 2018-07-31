@@ -1,3 +1,5 @@
+'use strict';
+
 const stars = document.querySelector('.stars');
 const move_counter = document.querySelector('.move_counter');
 const game = document.querySelector('.game');
@@ -45,10 +47,18 @@ var counter = 0;
 let images = [];
 
 // If an icon classlist contains 'hide', then it will call the show() function,
-// and also starts counting the clicks
+// and also starts counting the clicks. It also controls that just 2 cards can be opened at the same time.
 
 function doGame(e) {
-  if (e.target !== e.currentTarget) {
+  let valid =0;
+  let listel = e.currentTarget.childNodes[1].childNodes.forEach(listel => {
+
+    if (listel.firstChild.classList[0] === 'show') {
+      valid+=1;
+      }
+      return valid;
+  });
+  if (e.target !== e.currentTarget && valid < 2) {
     if (e.target.firstChild.classList.contains('hide')) {
       show(e);
       counter += 1;
